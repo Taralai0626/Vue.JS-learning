@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+		<title>J1 Practice</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.formfield{margin:20px;}
+      .mainDisplay{display: grid; grid-template-columns: auto auto;; border:solid 8px #ecf39e; border-radius: 22px; background-color: #90a955;}
+		</style>
+	</head>
+	<body>
+  <div id="app">
+    <div id="main-container">
+      <p>The New CCC (CanadianCalorie Counting) <a href="https://cemc.uwaterloo.ca/contests/computing/past_ccc_contests/2006/index.html">from the J1 problem hosted by the CCC.</a></p>
+      <div v-bind:class="boardClass">
+        <div>
+          <p>Here are the three burger choices:</p>
+          <ol>
+            <li>Cheeseburger (461 Calories)</li>
+            <li>Fish Burger (431 Calories)</li>
+            <li>Veggie Burger (420 Calories)</li>
+            <li>No Burger</li>
+          </ol>
+        </div>
+        <div>
+          <p>Here are the three drink choices:</p>
+          <ol>
+            <li>Soft Drink ( 130 Calories)</li>
+            <li>Orange Juice (160 Calories)</li>
+            <li>Milk (118 Calories)</li>
+            <li>No Drink</li>
+          </ol>
+        </div>
+        <div>
+          <p>Here are the three side order choices:</p>
+          <ol>
+            <li>Fries (100 Calories)</li>
+            <li>Baked Potato (57 Calories)</li>
+            <li>Chef Salad (70 Calories)</li>
+            <li>No Side Order</li>
+          </ol>
+        </div>
+        <div>
+          <p>Here are the three dessert choices:</p>
+          <ol>
+            <li>Apple Pie (167 Calories)</li>
+            <li>Sundae (266 Calories)</li>
+            <li>Fruit Cup (75 Calories)</li>
+            <li>No Dessert</li>
+          </ol>
+        </div>
+      </div> 
+    </div>
+		<div class="formfield">
+			<label>Burger Choices: <label>
+        <select v-model="select1" class="form-control">
+          <option value="0">No Burger</option>
+          <option value="461">Cheeseburger</option>
+          <option value="431">Fish Burger</option>
+          <option value="420">Veggie Burger</option>
+        </select>
+		</div>
+		<div class="formfield">
+			<label>Drink Choices: <label>
+        <select v-model="select2" class="form-control">
+          <option value="0">No Drink</option>
+          <option value="130">Soft Drink</option>
+          <option value="160">Orange Juice</option>
+          <option value="118">Milk</option>
+        </select>
+		</div>
+		<div class="formfield">
+			<label>Side Order Choices: <label>
+        <select v-model="select3" class="form-control">
+          <option value="0">No Side Order</option>
+          <option value="100">Fries</option>
+          <option value="57">Baked Potato</option>
+          <option value="70">Chef Salad</option>
+        </select>
+		</div>
+    <div class="formfield">
+			<label>Dessert Choices: <label>
+        <select v-model="select4" class="form-control">
+          <option value="0">No Dessert</option>
+          <option value="167">Apple Pie</option>
+          <option value="266">Sundae</option>
+          <option value="75">Fruit Cup</option>
+        </select>
+		</div>
+		<div id="result">
+			<div v-model="treat_diagnostics">Calories Total: {{calories_total}}</div>
+		</div>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+      boardClass:"mainDisplay",
+      select1: 0,
+      select2: 0,
+      select3: 0,
+      select4: 0,
+		},
+		computed:{
+			calories_total:function(){
+        return parseInt(this.select1) + parseInt(this.select2) + parseInt(this.select3) + parseInt(this.select4)
+      },
+    }
+	});
+	
+	</script>
+	<!--
+		v-model will allow you to quickly bind form elements to the data property.
+		Make sure to set a default value!
+		The Computed property can be used like data, except for values that are calculated from data properties.
+		In this example 'treat_total' is computed from data properties, and 'is_happy' is computed from 'treat_total'.
+		
+		ASYNCHRONOUS LEARNING EXERCISE : J1
+		- Find any J1 problem
+		- Imagine an interface that allows the user to enter data on the webpage
+		- Build using v-model and computed properties!
+	
+	-->
+	</body>
+</html>
